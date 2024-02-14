@@ -1,8 +1,10 @@
+import sorting_error1.sorting_error1;
 import binarysearch.binarysearch;
 
-public class membership_sorted {
+public class membership_mutation1 {
     public static boolean membership(int[] arr, int key) {
         boolean is_member;
+        sorting_error1.bubbleSort((arr));
         int result = binarysearch.search(arr, key);
         if (result == -1) {
             is_member = false;
@@ -20,7 +22,7 @@ public class membership_sorted {
     }
 
     public static void main(String[] args) {
-        int[] arr = {12, 23, 25, 34, 45, 56, 67};
+        int[] arr = {87, 65, 25, 34, 45, 56, 67};
         int key = 25;
         System.out.println("Array:");
         printArray(arr);

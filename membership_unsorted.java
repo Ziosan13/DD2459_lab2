@@ -2,15 +2,8 @@ import sorting.sorting;
 import binarysearch.binarysearch;
 
 public class membership_unsorted {
-    public static void main(String[] args) {
+    public static boolean membership(int[] arr, int key) {
         boolean is_member;
-        int[] arr = {78, 67, 56, 45, 35, 25, 13, 46, 47};
-        int key = 25;
-        System.out.println("Array:");
-        printArray(arr);
-        System.out.print("Key: ");
-        System.out.println(key);
-
         sorting.bubbleSort((arr));
         int result = binarysearch.search(arr, key);
         if (result == -1) {
@@ -18,10 +11,7 @@ public class membership_unsorted {
         } else {
             is_member = true;
         }
-        
-
-        System.out.print("Member: ");
-        System.out.println(is_member);
+        return is_member;
     }
 
     public static void printArray(int[] arr) {
@@ -29,5 +19,17 @@ public class membership_unsorted {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {87, 65, 23, 25, 34, 45, 56, 67};
+        int key = 25;
+        System.out.println("Array:");
+        printArray(arr);
+        boolean is_member = membership(arr, key);
+        System.out.print("Key: ");
+        System.out.println(key);
+        System.out.print("Member: ");
+        System.out.println(is_member);
     }
 }
