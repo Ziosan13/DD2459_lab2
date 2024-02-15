@@ -1,11 +1,10 @@
 package searching;
 
 public class searching {
-    //@ requires arr != null && \typeof(arr) == \type(int[]) && arr.length > 0;
-    //@ requires \type(key) == \type(int);
+    //@ requires arr != null;
     //@ ensures arr == \old(arr);
-    //@ ensures (\exists int i; i >= 0 && i < arr.length; arr[i] == key) ==> \result == i;
-    //@ exsures !(\exists int i; i >= 0 && i < arr.length; arr[i] == key) ==> \result == -1;
+    //@ ensures (\result >= 0) ==> (\exists int i; i >= 0 && i < arr.length; arr[i] == \result);
+    //@ ensures (\result == -1) ==> !(\exists int i; i >= 0 && i < arr.length; arr[i] == key);
     public static int search(int[] arr, int key) {
         int n = arr.length;
         for (int i = 0; i < n; i++) {

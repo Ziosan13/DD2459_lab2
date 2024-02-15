@@ -1,12 +1,12 @@
 package binarysearch;
 
 public class binarysearch {
-    //@ requires arr != null && \typeof(arr) == \type(int[]) && arr.length > 0;
-    //@ requires (\forall int i; 0 <= i && i < arr.length - 1; arr[i] <= arr[i + 1]);
-    //@ requires \type(key) == \type(int);
+    /*@ requires arr != null 
+      @ && (\forall int i; 0 <= i && i < arr.length - 1; arr[i] <= arr[i + 1]);
+      @*/
     //@ ensures arr == \old(arr);
-    //@ ensures (\exists int i; i >= 0 && i < arr.length; arr[i] == key) ==> \result == i;
-    //@ exsures !(\exists int i; i >= 0 && i < arr.length; arr[i] == key) ==> \result == -1;
+    //@ ensures (\result >= 0) ==> (\exists int i; i >= 0 && i < arr.length; arr[i] == \result);
+    //@ ensures (\result == -1) ==> !(\exists int i; i >= 0 && i < arr.length; arr[i] == key);
     public static int search(int[] arr, int key) {
         int x;
         int i = 1;

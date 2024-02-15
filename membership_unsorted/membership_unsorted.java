@@ -3,6 +3,11 @@ import sorting.sorting;
 import binarysearch.binarysearch;
 
 public class membership_unsorted {
+    /*@ requires A.length >= 1;
+    @ ensures (\result == true) ==> (\exists int i; 0 <= i && i < A.length; A[i] == key);
+    @ ensures (\result == false) ==> !(\exists int i; 0 <= i && i < A.length; A[i] == key);
+    @ pure;
+    @*/
     public static boolean membership(int[] arr, int key) {
         boolean is_member;
         sorting.bubbleSort((arr));
