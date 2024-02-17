@@ -9,7 +9,7 @@ public class binarysearch {
     //@ ensures (\result == -1) ==> !(\exists int i; i >= 0 && i < arr.length; arr[i] == key);
     public static int search(int[] arr, int key) {
         int x;
-        int i = 1;
+        int i = 0;
         int n = arr.length;
         while (true) {
             x = (i + n) / 2;
