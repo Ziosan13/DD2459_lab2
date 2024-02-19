@@ -91,9 +91,9 @@ public class PairwiseTestingGenerator {
         }
     }
 
-    public static void main(String[] args) {
-        PairwiseTestingGenerator pGenerator = new PairwiseTestingGenerator();
-        ArrayList<PairwiseTest> testSuite = pGenerator.generatePairwiseTestSuite(10);
-        pGenerator.writeToFile(testSuite, "testFiles/pairwiseResult.txt");
-    }
+    // public static void main(String[] args) {
+    //     PairwiseTestingGenerator pGenerator = new PairwiseTestingGenerator();
+    //     ArrayList<PairwiseTest> testSuite = pGenerator.generatePairwiseTestSuite(10);
+    //     pGenerator.writeToFile(testSuite, "testFiles/pairwiseResult.txt");
+    // }
 }
