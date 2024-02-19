@@ -9,7 +9,7 @@ import binarysearch.binarysearch;
 public class membership_mutation6 {
     public static boolean membership(int[] arr, int key) {
         boolean is_member;
-        sorting.bubbleSort((arr));
+        arr = sorting.bubbleSort((arr));
         // inject error begin
         Random random = new Random();
         arr[random.nextInt(arr.length)] = 0;

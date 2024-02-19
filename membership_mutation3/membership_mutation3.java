@@ -7,7 +7,7 @@ import binarysearch_error2.binarysearch_error2;
 public class membership_mutation3 {
     public static boolean membership(int[] arr, int key) {
         boolean is_member;
-        sorting.bubbleSort((arr));
+        arr = sorting.bubbleSort((arr));
         int result = binarysearch_error2.search(arr, key);
         if (result == -1) {
             is_member = false;
