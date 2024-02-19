@@ -8,7 +8,7 @@ public class membership_mutation4 {
     public static boolean membership(int[] arr, int key) {
         boolean is_member;
         arr[arr.length - 1] = 0;
-        sorting.bubbleSort((arr));
+        arr = sorting.bubbleSort((arr));
         int result = binarysearch.search(arr, key);
         if (result == -1) {
             is_member = false;
