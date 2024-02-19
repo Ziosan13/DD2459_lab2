@@ -1,10 +1,11 @@
 package sorting;
 
 public class sorting {
-    //@ requires arr != null && \typeof(arr) == \type(int[]) && arr.length > 0;
-    //@ ensures arr.length == \old(arr.length);
-    //@ ensures (\forall int i; 0 <= i && i < arr.length - 1; arr[i] <= arr[i + 1]);
-    public static void bubbleSort(int[] arr) {
+    //@requires arr != null;
+    //@ensure arr.length == \old(arr.length);
+    //@ensure (\forall int i; 0 <= i && i < arr.length - 1; arr[i] <= arr[i + 1]);
+    //@ensure (\forall int j; 0 <= j && j < arr.length);
+    public static int[] bubbleSort(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -16,5 +17,6 @@ public class sorting {
                 }
             }
         }
+        return arr;
     }
 }
