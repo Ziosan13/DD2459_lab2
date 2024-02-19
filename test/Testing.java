@@ -10,8 +10,8 @@ public class Testing {
     rtg.writeToFile(RandomSuite, "testFiles/randomTestResult.txt");
 
     // PairwiseTest
-    PairwiseTestingGenerator pGenerator = new PairwiseTestingGenerator();
-    ArrayList<PairwiseTest> PairwiseSuite = pGenerator.generatePairwiseTestSuite(10);
+    PairwiseTestingGenerator pGenerator = new PairwiseTestingGenerator(10);
+    ArrayList<PairwiseTest> PairwiseSuite = pGenerator.generatePairwiseTestSuite();
     pGenerator.writeToFile(PairwiseSuite, "testFiles/pairwiseResult.txt");
   }
   

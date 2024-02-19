@@ -1,29 +1,25 @@
 package test;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PairwiseTestingGenerator {
-    int changedValue1;
-    int changedValue2;
+    int[] typicalArray;
+    int len;
     private static int min = -50;
     private static int max = 50;
 
-    public PairwiseTestingGenerator(){
-        this.changedValue1 = min + (int)(Math.random() * ((max - min) + 1));
-        this.changedValue2 = min + (int)(Math.random() * ((max - min) + 1));
+    public PairwiseTestingGenerator(int len){
+        this.len = len;
+        this.typicalArray = new int[len];
+        for(int i = 0; i < len; i++) {
+            this.typicalArray[i] = min + (int)(Math.random() * ((max - min) + 1));
+        }
     }
 
-    public ArrayList<PairwiseTest> generatePairwiseTestSuite(int len) {
+    public ArrayList<PairwiseTest> generatePairwiseTestSuite() {
         ArrayList<PairwiseTest> testSuite = new ArrayList<PairwiseTest>();
         // 0-wise
         int[] defaultArray = zeroWiseGenerator(len);
@@ -47,7 +43,7 @@ public class PairwiseTestingGenerator {
         ArrayList<PairwiseTest> testSuite = new ArrayList<PairwiseTest>();
         for (int i = 0; i < len; i++) {           
             int[] tempArray = defaultArray.clone();
-            tempArray[i] = changedValue1;
+            tempArray[i] = typicalArray[i];
             testSuite.add(new PairwiseTest(tempArray));
         }
         return testSuite;
@@ -57,11 +53,11 @@ public class PairwiseTestingGenerator {
         ArrayList<PairwiseTest> testSuite = new ArrayList<PairwiseTest>();
         for (int i = 0; i < length; i++) {
             int[] tempArray = defaultArray.clone();
-            tempArray[i] = changedValue1;
-            for (int j = 0; j < length; j++) {
+            tempArray[i] = typicalArray[i];
+            for (int j = i + 1; j < length; j++) {
                 int[] tempArray2 =tempArray.clone();
                 if (j != i) {
-                    tempArray2[j] = changedValue2;
+                    tempArray2[j] = typicalArray[j];
                     testSuite.add(new PairwiseTest(tempArray2));
                 }
             }
@@ -73,12 +69,13 @@ public class PairwiseTestingGenerator {
         File file = new File(filename);
         FileWriter fileWriter;
         try {
-            if(!file.exists()){
-                fileWriter = new FileWriter(file);
-            }
-            else{
-                fileWriter = new FileWriter(file, true);
-            }
+            // if(!file.exists()){
+            //     fileWriter = new FileWriter(file);
+            // }
+            // else{
+            //     fileWriter = new FileWriter(file, true);
+            // }
+            fileWriter = new FileWriter(file);
             String testSuiteString = "";
             for(PairwiseTest test: testSuite) {
                 testSuiteString += test.getString();
