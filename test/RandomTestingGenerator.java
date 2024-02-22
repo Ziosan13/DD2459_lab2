@@ -18,9 +18,10 @@ public class RandomTestingGenerator {
   private static int min = -50;
   private static int max = 50;
 
+
   public ArrayList<RandomTest> generateRandomTestSuite(int len){
     ArrayList<RandomTest> testSuite = new ArrayList<RandomTest>();
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < 56; i++) {
         int[] RandomArray = new int[len];
         for (int j = 0; j < len; j++) {
             RandomArray[j] = min + (int)(Math.random() * ((max - min) + 1));
@@ -35,27 +36,38 @@ public class RandomTestingGenerator {
     return testSuite;
   }
 
-  public void writeToFile(ArrayList<RandomTest> testSuite, String filename) {
-    File file = new File(filename);
-    FileWriter fileWriter;
-    try {
-        if(!file.exists()){
-            fileWriter = new FileWriter(file);
+//   public void writeToFile(ArrayList<RandomTest> testSuite, String filename) {
+//     File file = new File(filename);
+//     FileWriter fileWriter;
+//     try {
+//         if(!file.exists()){
+//             fileWriter = new FileWriter(file);
+//         }
+//         else{
+//             fileWriter = new FileWriter(file, true);
+//         }
+//         String testSuiteString = "";
+//         for(RandomTest test: testSuite) {
+//             testSuiteString += test.getString();
+//         }
+//         fileWriter.write(testSuiteString);
+//         fileWriter.flush();
+//         fileWriter.close();
+//     } catch (IOException e) {
+//         e.printStackTrace();
+//     }
+
+    public static void writeToFile(ArrayList<RandomTest> testSuite, String filename) {
+            try(FileOutputStream f = new FileOutputStream(filename);
+                ObjectOutput s = new ObjectOutputStream(f)) {
+            s.writeObject(testSuite);
+            } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            } catch (IOException e) {
+            e.printStackTrace();
+            }
         }
-        else{
-            fileWriter = new FileWriter(file, true);
-        }
-        String testSuiteString = "";
-        for(RandomTest test: testSuite) {
-            testSuiteString += test.getString();
-        }
-        fileWriter.write(testSuiteString);
-        fileWriter.flush();
-        fileWriter.close();
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
 
   // public static void main(String[] args) {
   //   RandomTestingGenerator rtg = new RandomTestingGenerator();
@@ -65,4 +77,3 @@ public class RandomTestingGenerator {
 
   
   
-}

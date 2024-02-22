@@ -1,8 +1,12 @@
 package test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class PairwiseTestingGenerator {
@@ -65,26 +69,31 @@ public class PairwiseTestingGenerator {
         return testSuite;
     }
 
-    public void writeToFile(ArrayList<PairwiseTest> testSuite, String filename) {
-        File file = new File(filename);
-        FileWriter fileWriter;
-        try {
-            // if(!file.exists()){
-            //     fileWriter = new FileWriter(file);
-            // }
-            // else{
-            //     fileWriter = new FileWriter(file, true);
-            // }
-            fileWriter = new FileWriter(file);
-            String testSuiteString = "";
-            for(PairwiseTest test: testSuite) {
-                testSuiteString += test.getString();
-            }
-            fileWriter.write(testSuiteString);
-            fileWriter.flush();
-            fileWriter.close();
+    // public void writeToFile(ArrayList<PairwiseTest> testSuite, String filename) {
+    //     File file = new File(filename);
+    //     FileWriter fileWriter;
+    //     try {
+    //         fileWriter = new FileWriter(file);
+    //         String testSuiteString = "";
+    //         for(PairwiseTest test: testSuite) {
+    //             testSuiteString += test.getString();
+    //         }
+    //         fileWriter.write(testSuiteString);
+    //         fileWriter.flush();
+    //         fileWriter.close();
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+
+    public static void writeToFile(ArrayList<PairwiseTest> testSuite, String filename) {
+        try(FileOutputStream f = new FileOutputStream(filename);
+            ObjectOutput s = new ObjectOutputStream(f)) {
+        s.writeObject(testSuite);
+        } catch (FileNotFoundException e) {
+        e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+        e.printStackTrace();
         }
     }
 
